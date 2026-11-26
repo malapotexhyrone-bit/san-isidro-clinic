@@ -1,0 +1,46 @@
+Options -Indexes
+
+# Override the parent project's deny rule for the web entry point and assets.
+<IfModule mod_authz_core.c>
+    Require all granted
+    <FilesMatch "(?i)(^\.|^(artisan|composer\.(json|lock)|package(-lock)?\.json|phpunit\.xml|README\.md)$|\.(env|sql|sqlite3?|db|log|bak|backup|old|zip|tar|gz|7z)$)">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "(?i)\.(php[0-9]?|phtml|phar|cgi|pl|py|sh|bat|cmd)$">
+        Require all denied
+    </FilesMatch>
+    <Files "index.php">
+        Require all granted
+    </Files>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order deny,allow
+    Allow from all
+    <FilesMatch "(?i)(^\.|^(artisan|composer\.(json|lock)|package(-lock)?\.json|phpunit\.xml|README\.md)$|\.(env|sql|sqlite3?|db|log|bak|backup|old|zip|tar|gz|7z)$)">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "same-origin"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+    RewriteEngine On
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

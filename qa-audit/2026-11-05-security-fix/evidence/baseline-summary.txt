@@ -1,0 +1,10 @@
+Baseline captured before application security changes:
+
+- Laravel test suite: 64 passed, 1,516 assertions, exit 0.
+- Production build: initially failed because Vite was unavailable; node_modules was absent.
+- Composer audit: 8 advisories affecting symfony/http-foundation, symfony/http-kernel, symfony/mime, symfony/routing, and symfony/yaml.
+- npm install audit: 0 vulnerabilities.
+- Authenticated dashboard timing, five warm serial requests: median 236.58 ms, min 225.99 ms, max 243.47 ms, body 24,678 bytes.
+- Response headers absent: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy.
+- Browser role journeys passed; no console warnings/errors observed.
+

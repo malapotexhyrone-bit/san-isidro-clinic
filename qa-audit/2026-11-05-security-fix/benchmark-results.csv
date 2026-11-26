@@ -1,0 +1,12 @@
+"Category","Metric / fixed scope","Unit / direction","Before","After","Change","Target / gate","Comparison","Target result","Sample count","Evidence"
+"Functional","Existing regression tests passed / total","count and %, higher","64/64 (100%)","67/67 (100%)","+3 tests; 0 percentage points","All pass","Improved coverage","Pass","64 before; 67 after","artisan test"
+"Security","Known Composer advisories in locked dependencies","count, lower","8","0","-8 (100% reduction)","Zero applicable known advisories","Improved","Pass","1 audit before; 1 after","composer audit --locked"
+"Security","Core dynamic-response headers present","count of 5, higher","0/5","5/5","+5 (100 percentage points)","All five present","Improved","Pass","1 live check plus 2 automated tests","live headers and SecurityHeadersTest"
+"Quality","Production asset build","status","Blocked: node_modules absent","Pass","Environment prerequisite resolved","Pass","Improved","Pass","1 before; 1 after","npm run build"
+"Dependencies","Known npm advisories","count, lower","0","0","0","Zero","No clear change","Pass","install audit plus final audit","npm audit"
+"Web lab","Authenticated administrator dashboard response median","ms, lower","236.58","221.69","-14.89 ms (6.29% lower)","Provisional <500 ms","No clear change; ranges overlap","Pass","5 before; 5 after","before 225.99-243.47; after 211.73-269.56"
+"Reliability","Unexpected browser console warnings/errors in critical journeys","count, lower","0","0","0","Zero","No clear change","Pass","Four role journeys","browser dev logs"
+"Accessibility","Full WCAG violations","count, lower","","","","Required criteria unknown","Not measured","Unknown","0","Dedicated audit not run"
+"Web field","LCP / INP / CLS p75","field metrics, lower","","","","Production field targets","Not measured","Unknown","0","No field data"
+"Capacity","Sustained/concurrent workload","requests and latency","","","","Production SLO unknown","Not measured","Unknown","0","Load testing not authorized/scoped"
+

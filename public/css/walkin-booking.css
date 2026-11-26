@@ -1,0 +1,30 @@
+.walkin-booking .walkin-arrival {
+    padding: 20px 24px;
+    border-top: 1px solid var(--reception-line, var(--line));
+    border-bottom: 1px solid var(--reception-line, var(--line));
+}
+.walkin-booking .walkin-arrival-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+.walkin-booking .walkin-arrival-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: 10px;
+    background: var(--reception-glass-soft, var(--soft));
+    font-size: 13px;
+}
+.walkin-booking .walkin-arrival-detail > span { color: var(--reception-muted, var(--muted)); }
+.walkin-booking .walkin-arrival-detail > strong { color: var(--reception-text, var(--ink)); font-weight: 650; }
+.walkin-booking #walkin-reason { min-height: 66px; padding: 9px 11px; font-size: 13px; resize: vertical; }
+.walkin-booking .booking-footer .booking-heading { margin-bottom: 8px; }
+@media (max-width: 720px) { .walkin-booking .walkin-arrival { padding: 18px; } }
+@media (max-width: 560px) {
+    .walkin-booking .walkin-arrival-grid { grid-template-columns: 1fr; gap: 8px; }
+    .walkin-booking .walkin-arrival-detail { padding: 10px 12px; }
+}

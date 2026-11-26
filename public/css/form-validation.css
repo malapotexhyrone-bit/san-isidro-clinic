@@ -1,0 +1,10 @@
+:root { --validation-text: #9c173c; --validation-border: #d62150; --validation-background: rgba(255, 233, 240, .75); }
+html[data-theme="dark"] { --validation-text: #ffc1d4; --validation-border: #ff799e; --validation-background: rgba(180, 33, 76, .14); }
+.validation-summary[hidden], .field-error[hidden] { display: none !important; }
+.validation-summary { scroll-margin-top: 110px; }
+.form-grid > .field { align-content: start; }
+.field-error { margin: 2px 0 0; padding: 8px 10px; border-left: 3px solid var(--validation-border); border-radius: 6px; background: var(--validation-background); color: var(--validation-text); font-size: 12px; font-weight: 650; line-height: 1.55; }
+body .field-has-error > label { color: var(--validation-text); }
+body input[aria-invalid="true"], body select[aria-invalid="true"], body textarea[aria-invalid="true"] { border: 2px solid var(--validation-border) !important; box-shadow: 0 0 0 3px var(--validation-background) !important; scroll-margin-top: 110px; }
+body input[aria-invalid="true"]:focus, body select[aria-invalid="true"]:focus, body textarea[aria-invalid="true"]:focus { outline: 2px solid var(--validation-border); outline-offset: 3px; }
+.validation-summary a { color: inherit; text-decoration: underline; }

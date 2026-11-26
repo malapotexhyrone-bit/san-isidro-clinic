@@ -1,0 +1,23 @@
+body.role-nurse {
+    background-color: #efa1b6;
+    background-image: var(--reception-overlay), url('../images/nurse-light-bg.jpeg');
+    background-position: center;
+}
+
+html[data-theme="dark"] body.role-nurse {
+    background-color: #211118;
+    background-image: var(--reception-overlay), url('../images/nurse-dark-bg.jpeg');
+}
+
+.role-nurse .reception-sidebar-note .status-dot {
+    background: #27b87a;
+    box-shadow: 0 0 0 4px rgba(39, 184, 122, .14);
+}
+
+.role-nurse .nav a.active {
+    background: linear-gradient(135deg, #f04d70, #c61943);
+}
+
+@media (max-width: 900px) {
+    body.role-nurse { background-position: 61% center; }
+}

@@ -1,0 +1,229 @@
+.review-overview,
+.review-detail-heading {
+    max-width: 75rem;
+    margin-inline: auto;
+}
+
+.review-overview {
+    padding: 1.65rem;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: 1.25rem;
+    background: var(--reception-glass-strong, #fff);
+}
+
+.review-detail-copy {
+    min-width: 0;
+    flex: 1;
+}
+
+.review-detail-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .65rem 1rem;
+}
+
+.review-detail-count {
+    display: inline-flex;
+    align-items: center;
+    padding: .38rem .7rem;
+    border: 1px solid #efb4c0;
+    border-radius: 999px;
+    color: #b4233f;
+    background: #fff4f6;
+    font-size: .75rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.review-overview-heading,
+.review-detail-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.review-overview-heading {
+    padding: .15rem .15rem 1.35rem;
+}
+
+.review-overview-heading h2,
+.review-detail-heading h2 {
+    margin: .25rem 0 .3rem;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -.025em;
+}
+
+.review-overview-heading p,
+.review-detail-heading p,
+.review-physician-card p {
+    margin: 0;
+    color: var(--reception-muted, var(--muted));
+}
+
+.review-eyebrow,
+.review-card-label {
+    color: var(--reception-muted, var(--muted));
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.review-total {
+    padding: .55rem .75rem;
+    border-radius: .55rem;
+    background: var(--reception-glass-soft, var(--soft));
+    color: var(--reception-muted, var(--muted));
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.review-physician-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.15rem;
+}
+
+.review-physician-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem 1.35rem;
+    padding: 1.4rem;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: .9rem;
+    background: color-mix(in srgb, var(--reception-glass-strong, #fff) 90%, transparent);
+}
+
+.review-physician-card h3 {
+    margin: .2rem 0;
+    font-size: 1.15rem;
+}
+
+.review-physician-card .btn,
+.review-clear-state,
+.review-disabled-button {
+    grid-column: 1 / -1;
+}
+
+.review-disabled-button,
+.review-disabled-button:hover,
+.review-disabled-button:active {
+    border-color: var(--reception-line, var(--line));
+    background: var(--reception-glass-soft, var(--soft));
+    color: var(--reception-muted, var(--muted));
+    box-shadow: none;
+    opacity: .68;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.review-card-count {
+    min-width: 6.75rem;
+    text-align: right;
+}
+
+.review-card-count strong {
+    display: block;
+    color: #b4233f;
+    font-size: 2rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.review-card-count span {
+    display: block;
+    margin-top: .3rem;
+    color: #9b2940;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.review-card-count.is-clear strong,
+.review-card-count.is-clear span,
+.review-clear-state {
+    color: #23734e;
+}
+
+.review-clear-state {
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.review-detail-heading {
+    margin-bottom: 1.25rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: 1rem;
+    background: var(--reception-glass-strong, #fff);
+}
+
+.review-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .78rem;
+    font-weight: 800;
+}
+
+.review-status::before {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 50%;
+    background: currentColor;
+    content: '';
+}
+
+.review-status-warning { color: #b4233f; }
+.review-status-success { color: #23734e; }
+
+.appointment-patient-name {
+    text-align: center;
+}
+
+.appointment-patient-name a {
+    display: inline;
+    color: inherit;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    font-weight: 750;
+    text-decoration: none;
+    text-underline-offset: .18em;
+}
+
+.appointment-patient-name a:hover {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+.appointment-patient-name a:focus-visible {
+    border-radius: .2rem;
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+}
+
+html[data-theme="dark"] .review-status-warning,
+html[data-theme="dark"] .review-detail-count,
+html[data-theme="dark"] .review-card-count.has-actions strong,
+html[data-theme="dark"] .review-card-count.has-actions span { color: #ff8ca2; }
+html[data-theme="dark"] .review-status-success,
+html[data-theme="dark"] .review-card-count.is-clear strong,
+html[data-theme="dark"] .review-card-count.is-clear span,
+html[data-theme="dark"] .review-clear-state { color: #77d6a6; }
+html[data-theme="dark"] .review-detail-count {
+    border-color: rgba(255, 140, 162, .4);
+    background: rgba(180, 35, 63, .16);
+}
+
+@media (max-width: 760px) {
+    .review-overview { padding: 1rem; }
+    .review-physician-grid { grid-template-columns: 1fr; }
+    .review-physician-card { padding: 1.15rem; }
+    .review-overview-heading,
+    .review-detail-heading { align-items: stretch; flex-direction: column; }
+    .review-detail-heading .btn { width: 100%; }
+}

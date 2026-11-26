@@ -1,0 +1,54 @@
+.appointment-management { --verification-accent: #d91f43; --verification-tint: rgba(229, 45, 88, .07); }
+.appointment-management #verification,
+.appointment-management #reschedule { scroll-margin-top: 90px; }
+.appointment-management .panel.verification-card {
+    border: 2px solid var(--verification-accent);
+    background: linear-gradient(var(--verification-tint), var(--verification-tint)), var(--reception-glass-strong, #fff);
+    box-shadow: 0 12px 36px rgba(162, 29, 64, .12);
+}
+.appointment-management .verification-card.is-verified { --verification-accent: #16794b; --verification-tint: rgba(22, 121, 75, .06); }
+.appointment-management .verification-card.needs-review { --verification-accent: #9a6512; --verification-tint: rgba(154, 101, 18, .06); }
+.appointment-management .verification-content { max-width: 660px; margin: 0 auto; padding: 24px 30px; text-align: center; }
+.appointment-management .verification-mark { display: grid; place-items: center; width: 42px; height: 42px; margin: 0 auto 10px; border-radius: 13px; background: var(--verification-accent); color: #fff; }
+.appointment-management .verification-mark svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.appointment-management .verification-eyebrow { margin: 0 0 7px; color: var(--verification-accent); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+.appointment-management .verification-content h2 { margin: 0; color: var(--reception-text, var(--ink)); font-size: clamp(23px, 3vw, 28px); letter-spacing: -.025em; }
+.appointment-management .verification-description { margin: 10px 0 18px; color: var(--reception-muted, var(--muted)); font-size: 13px; line-height: 1.6; }
+.appointment-management .verification-context { display: grid; gap: 5px; padding: 12px 16px; margin-bottom: 18px; border: 1px solid var(--reception-line, var(--line)); border-radius: 12px; background: var(--reception-glass-soft, var(--soft)); overflow-wrap: anywhere; }
+.appointment-management .verification-context strong { font-size: 16px; color: var(--reception-text, var(--ink)); }
+.appointment-management .verification-context span { font-size: 12px; color: var(--reception-muted, var(--muted)); line-height: 1.5; }
+.appointment-management .verification-form { max-width: 520px; margin: 0 auto; }
+.appointment-management .verification-entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: stretch; }
+.appointment-management .verification-entry .verification-submit { width: auto; min-width: 140px; margin: 0; }
+.appointment-management .verification-form .field { text-align: left; }
+.appointment-management .verification-form input { text-align: center; padding: 14px 16px; font-size: 21px; font-weight: 700; letter-spacing: .11em; }
+.appointment-management .verification-form input::placeholder { font-size: 18px; letter-spacing: .1em; }
+.appointment-management .verification-submit { width: 100%; min-height: 46px; margin-top: 14px; }
+.appointment-management .verification-support { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.appointment-management .verification-support .help { overflow-wrap: anywhere; }
+.appointment-management .verification-confirmed { color: var(--verification-accent); font-size: 12px; font-weight: 650; }
+.appointment-management .verification-next { display: grid; justify-items: center; gap: 12px; max-width: 420px; margin: 0 auto; }
+.appointment-management .verification-next .verification-submit { margin-top: 0; }
+.appointment-management .appointment-disclosure > summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; cursor: pointer; list-style: none; color: var(--reception-text, var(--ink)); }
+.appointment-management .appointment-disclosure > summary::-webkit-details-marker { display: none; }
+.appointment-management .appointment-disclosure > summary::marker { content: ''; }
+.appointment-management .appointment-disclosure > summary strong { display: block; font-size: 15px; }
+.appointment-management .appointment-disclosure > summary small { display: block; margin-top: 5px; font-size: 12px; color: var(--reception-muted, var(--muted)); }
+.appointment-management .appointment-disclosure > summary:hover { background: var(--reception-hover, var(--soft)); }
+.appointment-management .appointment-disclosure > summary:focus-visible { outline: 2px solid var(--red); outline-offset: -4px; border-radius: 12px; }
+.appointment-management .disclosure-chevron { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+.appointment-management .appointment-disclosure[open] .disclosure-chevron { transform: rotate(180deg); }
+.appointment-management .appointment-disclosure[open] > summary { border-bottom: 1px solid var(--reception-line, var(--line)); }
+.appointment-management .appointment-secondary { align-items: start; }
+.appointment-management .appointment-secondary h2 { font-size: 15px; margin-top: 0; }
+html[data-theme="dark"] .appointment-management { --verification-accent: #ff91aa; --verification-tint: rgba(255, 145, 170, .08); }
+html[data-theme="dark"] .appointment-management .verification-card.is-verified { --verification-accent: #71d7a2; }
+html[data-theme="dark"] .appointment-management .verification-card.needs-review { --verification-accent: #f4c472; }
+html[data-theme="dark"] .appointment-management .verification-mark { color: #28111a; }
+@media (max-width: 600px) {
+    .appointment-management .verification-content { padding: 24px 17px; }
+    .appointment-management .verification-context { padding: 12px; }
+    .appointment-management .verification-entry { grid-template-columns: 1fr; }
+    .appointment-management .appointment-disclosure > summary { padding: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .appointment-management .disclosure-chevron { transition: none; } }

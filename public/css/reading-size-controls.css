@@ -1,0 +1,87 @@
+:root { --clinic-reading-scale: 1; }
+.clinic-size-toggle > span { font-size: 20px; font-weight: 750; line-height: 1; letter-spacing: -1px; }
+.clinic-size-toggle > span > span { font-size: 14px; }
+.clinic-size-controls .clinic-glass-heading label { font-size: 16px; }
+.clinic-size-controls .clinic-glass-heading output { font-size: 15px; }
+.clinic-reading-adjustments { display: flex; align-items: center; gap: 8px; }
+.clinic-reading-adjustments > button { display: grid; place-items: center; flex: 0 0 40px; width: 40px; height: 40px; border: 1px solid var(--reception-line, var(--login-border)); border-radius: 10px; color: inherit; background: var(--reception-glass-soft, var(--login-glass)); font-size: 24px; cursor: pointer; }
+.clinic-reading-adjustments > button:disabled { opacity: .35; cursor: default; }
+.clinic-reading-adjustments > button:hover:not(:disabled) { border-color: #e94779; }
+.clinic-reading-adjustments > button:focus-visible { outline: 3px solid #e94779; outline-offset: 2px; }
+.clinic-reading-adjustments input { flex: 1; min-width: 0; }
+@media screen {
+    /* Scale the reading area, keeping the navigation and appearance tools reachable. */
+    .clinic-page { zoom: var(--clinic-reading-scale); }
+    html[data-reading-enlarged] .clinic-page { container-type: inline-size; container-name: clinic-reading; }
+    html[data-reading-enlarged] .clinic-page :is(h1, h2, h3, p, label, summary) { overflow-wrap: anywhere; }
+    .role-receptionist .content > .alert { zoom: var(--clinic-reading-scale); }
+    .role-receptionist .confirm-dialog, .role-receptionist .reception-welcome-card, .success-dialog { zoom: var(--clinic-reading-scale); max-width: calc((100vw - 40px) / var(--clinic-reading-scale)); max-height: calc((100dvh - 40px) / var(--clinic-reading-scale)); overflow-y: auto; }
+    html[data-reading-enlarged] :is(.confirm-dialog, .success-dialog, .reception-welcome-card) :is(h1, h2, p) { overflow-wrap: anywhere; }
+    html[data-reading-enlarged] .success-dialog .btn { min-width: 0; max-width: 100%; white-space: normal; }
+    /* The fixed shell remains available even when the page content is doubled. */
+    html[data-reading-enlarged] .role-receptionist .sidebar .nav a { font-size: calc(13px * var(--clinic-reading-scale)); white-space: normal; overflow-wrap: anywhere; }
+    html[data-reading-enlarged] .role-receptionist .sidebar .nav-label { min-width: 0; }
+    html[data-reading-enlarged] .role-receptionist .logout { font-size: calc(12px * var(--clinic-reading-scale)); white-space: normal; }
+    html[data-reading-enlarged] .role-receptionist .reception-sidebar-note strong { font-size: calc(11px * var(--clinic-reading-scale)); }
+    html[data-reading-enlarged] .role-receptionist .reception-sidebar-note small { font-size: calc(9px * var(--clinic-reading-scale)); }
+    body.login-page .login-card { zoom: var(--clinic-reading-scale); }
+    html[data-reading-enlarged] .login-layout { width: min(760px, 100%); grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    html[data-reading-enlarged] .login-card-wrap { max-width: none; justify-self: stretch; }
+    html[data-reading-enlarged] .login-card-heading { flex-wrap: wrap; }
+    html[data-reading-enlarged] .login-card-heading > div { min-width: 0; max-width: 100%; }
+    html[data-reading-enlarged] body.login-page .login-card h2 { overflow-wrap: anywhere; }
+    html[data-reading-enlarged] body.login-page .login-card .login-submit { white-space: normal; flex-wrap: wrap; }
+    html[data-reading-enlarged] .login-intro { max-width: none; text-align: center; }
+    html[data-reading-enlarged] .login-intro h1 { font-size: calc(28px * var(--clinic-reading-scale)); overflow-wrap: anywhere; }
+    html[data-reading-enlarged] .login-intro .login-system-name { font-size: calc(13px * var(--clinic-reading-scale)); margin-left: auto; margin-right: auto; }
+    html[data-reading-enlarged] .login-eyebrow, html[data-reading-enlarged] .login-accent, html[data-reading-enlarged] .login-meta, html[data-reading-enlarged] .typewriter-line { display: none; }
+    html[data-reading-enlarged] body.login-page .login-shell { justify-content: flex-start; }
+    html[data-reading-enlarged] .login-clock time { flex-direction: column; gap: 3px; }
+    html[data-reading-enlarged] .login-clock-divider { display: none; }
+    @container clinic-reading (max-width: 720px) {
+        .clinic-page .title-row { flex-wrap: wrap; }
+        .clinic-page .title-row .toolbar { justify-content: flex-start; }
+        .clinic-page .profile-layout, .clinic-page .profile-edit-layout, .clinic-page .form-grid, .booking-schedule { grid-template-columns: minmax(0, 1fr); }
+        .clinic-page .field.full { grid-column: auto; }
+        .booking-date { border-right: 0; border-bottom: 1px solid var(--reception-line, var(--line)); }
+        .clinic-page .stats, .clinic-page .record { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .booking-time-slots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .booking-footer { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+        .appointment-management .verification-entry { grid-template-columns: minmax(0, 1fr); }
+        .clinic-page .profile-readonly-grid { grid-template-columns: minmax(0, 1fr); }
+        .clinic-page .table-wrap table { min-width: 640px; }
+    }
+    @container clinic-reading (max-width: 420px) {
+        .clinic-page .title-row { display: block; }
+        .clinic-page .title-row .toolbar, .clinic-page .title-row > .btn { margin-top: 12px; }
+        .clinic-page .stats, .clinic-page .record, .clinic-page .profile-info-grid { grid-template-columns: minmax(0, 1fr); }
+        .clinic-page .title-row, .clinic-page .panel-body, .clinic-page .panel-head, .workflow-section, .workflow-footer, .clinic-page .profile-card, .clinic-page .profile-hero, .booking-patient, .booking-date, .booking-time, .booking-footer { padding: 12px; }
+        .clinic-page .toolbar { align-items: stretch; }
+        .clinic-page .toolbar > .field, .clinic-page .toolbar > .btn { flex: 1 1 100%; }
+        .clinic-page .btn { white-space: normal; }
+        .clinic-page .workflow-footer .actions, .booking-footer .actions { flex-wrap: wrap; }
+        .clinic-page .workflow-footer .actions > .btn, .booking-footer .actions > .btn { flex: 1 1 100%; }
+        .booking-email { grid-template-columns: minmax(0, 1fr) !important; }
+        .booking-heading small { margin-left: 0; }
+        .booking-save { display: flex; flex-direction: column; align-items: stretch; text-align: left; gap: 10px; }
+        .walkin-booking .walkin-arrival-grid { grid-template-columns: minmax(0, 1fr); }
+        .appointment-management .verification-entry .verification-submit { min-width: 0; width: 100%; }
+        .booking-time-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .clinic-page .profile-hero { display: grid; justify-items: center; text-align: center; }
+    }
+    @container clinic-reading (max-width: 300px) {
+        .booking-calendar { overflow-x: auto; }
+        .booking-calendar-head, .booking-week, .booking-days { min-width: 196px; }
+        .booking-heading { flex-wrap: wrap; }
+        .clinic-page .profile-portrait { max-width: 100%; }
+    }
+}
+@media (max-width: 480px) {
+    .role-receptionist .reception-breadcrumb { display: none; }
+    .role-receptionist .reception-profile { gap: 6px; }
+}
+@media screen and (max-width: 700px) {
+    html[data-reading-enlarged] .confirm-dialog-actions { flex-direction: column; align-items: stretch; }
+    html[data-reading-enlarged] .confirm-dialog-actions .btn { width: 100%; min-width: 0; white-space: normal; }
+}
+@media print { .clinic-size-controls { display: none !important; } }

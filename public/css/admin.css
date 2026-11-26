@@ -1,0 +1,37 @@
+body.role-admin {
+    background-color: #ef9fb4;
+    background-image:
+        var(--reception-overlay), url('../images/admin-light-bg.jpeg');
+    background-position: center;
+}
+
+html[data-theme="dark"] body.role-admin {
+    background-color: #1b0d13;
+    background-image:
+        var(--reception-overlay), url('../images/admin-dark-bg.jpeg');
+}
+
+.role-admin .reception-brand-mark {
+    background: linear-gradient(145deg, #f05276, #ad1238);
+}
+
+.role-admin .reception-sidebar-note .status-dot {
+    background: #2fb677;
+    box-shadow: 0 0 0 4px rgba(47, 182, 119, .14);
+}
+
+.role-admin .nav a.active {
+    background: linear-gradient(135deg, #e93d64, #ad1239);
+}
+
+.role-admin .reception-avatar {
+    background: linear-gradient(145deg, #e94970, #a81036);
+}
+
+@media (max-width: 900px) {
+    .role-admin .nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+    .role-admin .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

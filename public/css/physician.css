@@ -1,0 +1,23 @@
+body.role-physician {
+    background-color: #efa0b4;
+    background-image: var(--reception-overlay), url('../images/physician-light-bg.jpeg');
+    background-position: center;
+}
+
+html[data-theme="dark"] body.role-physician {
+    background-color: #211117;
+    background-image: var(--reception-overlay), url('../images/physician-dark-bg.jpeg');
+}
+
+.role-physician .reception-sidebar-note .status-dot {
+    background: #36b97c;
+    box-shadow: 0 0 0 4px rgba(54, 185, 124, .14);
+}
+
+.role-physician .nav a.active {
+    background: linear-gradient(135deg, #ef4b70, #c31843);
+}
+
+@media (max-width: 900px) {
+    body.role-physician { background-position: 61% center; }
+}

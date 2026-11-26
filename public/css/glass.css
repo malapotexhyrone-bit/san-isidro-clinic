@@ -1,0 +1,112 @@
+/* Shared surfaces for Receptionist, Nurse, Physician and Administrator pages. */
+html[data-theme="light"] {
+    background-color: #ed9bb0;
+    --reception-text: #35141f;
+    --reception-muted: #66434f;
+    --reception-glass: rgba(255, 249, 251, .46);
+    --reception-glass-strong: rgba(255, 249, 251, .66);
+    --reception-glass-soft: rgba(255, 255, 255, .32);
+    --reception-line: rgba(255, 255, 255, .74);
+    --reception-field: rgba(255, 255, 255, .58);
+    --reception-hover: rgba(255, 255, 255, .58);
+    --reception-table-even: rgba(255, 255, 255, .16);
+    --reception-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 18px 48px rgba(90, 26, 48, .12);
+}
+
+html[data-theme="dark"] {
+    background-color: #211118;
+    --reception-text: #fff4f8;
+    --reception-muted: #e9c8d2;
+    --reception-glass: rgba(31, 15, 24, .48);
+    --reception-glass-strong: rgba(31, 15, 24, .70);
+    --reception-glass-soft: rgba(255, 195, 214, .07);
+    --reception-line: rgba(255, 202, 219, .23);
+    --reception-field: rgba(23, 10, 17, .46);
+    --reception-hover: rgba(255, 164, 191, .15);
+    --reception-table-even: rgba(255, 255, 255, .035);
+    --reception-shadow: inset 0 1px 0 rgba(255, 219, 232, .09), 0 20px 54px rgba(0, 0, 0, .28);
+}
+
+.role-receptionist .panel,
+.role-receptionist .stat,
+.role-receptionist .title-row,
+.role-receptionist .profile-hero,
+.role-receptionist .profile-card,
+.role-receptionist .profile-save-bar,
+.role-receptionist .confirm-dialog,
+.role-receptionist .reception-welcome-card {
+    background: linear-gradient(135deg, var(--reception-glass-strong), var(--reception-glass));
+    border-color: var(--reception-line);
+    box-shadow: var(--reception-shadow);
+    backdrop-filter: blur(22px) saturate(135%);
+    -webkit-backdrop-filter: blur(22px) saturate(135%);
+}
+
+.role-receptionist .sidebar,
+.role-receptionist .reception-topbar {
+    background: var(--reception-glass-strong);
+    border-color: var(--reception-line);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+
+.role-receptionist input,
+.role-receptionist select,
+.role-receptionist textarea {
+    background-color: var(--reception-field);
+    border-color: var(--reception-line);
+    color: var(--reception-text);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+
+.role-receptionist .notice,
+.role-receptionist .panel-head,
+.role-receptionist .pagination a,
+.role-receptionist .pagination span {
+    background: var(--reception-glass-soft);
+    border-color: var(--reception-line);
+    color: var(--reception-text);
+}
+
+.role-receptionist th { background: var(--reception-glass-soft); color: var(--reception-text); }
+.role-receptionist tbody tr:nth-child(even) { background: var(--reception-table-even); }
+.role-receptionist tbody tr:hover { background: var(--reception-hover); }
+.role-receptionist th, .role-receptionist td { border-color: var(--reception-line); }
+.role-receptionist .password-control .password-eye { background: transparent; }
+.role-receptionist .password-control .password-eye:hover { background: var(--reception-hover); }
+.role-receptionist .alert { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.role-receptionist .alert-success { background: linear-gradient(rgba(28, 155, 84, .10), rgba(28, 155, 84, .10)), var(--reception-glass-strong); color: #145139; border-color: rgba(28, 155, 84, .30); }
+.role-receptionist .alert-error { background: linear-gradient(rgba(211, 31, 72, .10), rgba(211, 31, 72, .10)), var(--reception-glass-strong); color: #8f1739; border-color: rgba(211, 31, 72, .30); }
+html[data-theme="dark"] .role-receptionist .alert-success { color: #aff3ce; }
+html[data-theme="dark"] .role-receptionist .alert-error { color: #ffc0d0; }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    html[data-theme="light"] { --reception-glass: #fff0f5; --reception-glass-strong: #fff5f8; }
+    html[data-theme="dark"] { --reception-glass: #2b1520; --reception-glass-strong: #24111b; }
+}
+
+@media print {
+    html[data-theme] { background-color: #fff; }
+    .role-receptionist {
+        --reception-text: #222;
+        --reception-muted: #555;
+        --reception-line: #ccc;
+        --reception-glass: #fff;
+        --reception-glass-strong: #fff;
+        --reception-glass-soft: #f5f5f5;
+        --reception-field: #fff;
+        color: #222;
+        background: #fff !important;
+    }
+    .role-receptionist .panel,
+    .role-receptionist .stat,
+    .role-receptionist .title-row,
+    .role-receptionist .profile-card {
+        color: #222;
+        background: #fff;
+        border-color: #ccc;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}

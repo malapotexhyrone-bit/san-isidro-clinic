@@ -1,0 +1,124 @@
+.clinic-date-picker {
+    position: relative;
+    width: 100%;
+}
+
+.clinic-page .field:has(.clinic-date-picker.is-open),
+.clinic-date-picker.is-open {
+    position: relative;
+    z-index: 45;
+}
+
+.clinic-page .panel:has(.clinic-date-picker.is-open),
+.clinic-page .appointment-disclosure:has(.clinic-date-picker.is-open) {
+    overflow: visible;
+}
+
+.clinic-date-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .72rem .9rem;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: .75rem;
+    background: var(--reception-glass-strong, #fff);
+    color: var(--reception-muted, var(--muted));
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.clinic-date-trigger.has-value { color: var(--reception-text, var(--ink)); }
+.clinic-date-trigger:hover { border-color: color-mix(in srgb, var(--red) 55%, var(--reception-line, var(--line))); }
+.clinic-date-trigger:active { transform: translateY(1px); }
+.clinic-date-trigger:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.clinic-date-trigger svg { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+
+.clinic-date-popover {
+    position: absolute;
+    z-index: 46;
+    top: calc(100% + .45rem);
+    left: 0;
+    width: min(19rem, calc(100vw - 2rem));
+    padding: .8rem;
+    border: 1px solid var(--reception-line, var(--line));
+    border-radius: .85rem;
+    background: #fffafb;
+    box-shadow: 0 1.1rem 3rem rgba(82, 18, 42, .3), 0 0 0 1px rgba(255, 255, 255, .85) inset;
+}
+
+.clinic-date-popover[hidden] { display: none; }
+.clinic-date-popover.is-portal {
+    position: fixed;
+    z-index: 900;
+    top: var(--calendar-top);
+    right: auto;
+    bottom: auto;
+    left: var(--calendar-left);
+    transform: none;
+}
+.clinic-date-header { display: grid; grid-template-columns: 2.25rem 1fr 2.25rem; align-items: center; gap: .4rem; margin-bottom: .55rem; }
+.clinic-date-header strong { text-align: center; font-size: .9rem; }
+.clinic-date-header button,
+.clinic-date-actions button {
+    min-height: 2.25rem;
+    border: 0;
+    border-radius: .5rem;
+    background: transparent;
+    color: var(--reception-text, var(--ink));
+    cursor: pointer;
+}
+.clinic-date-header button { font-size: 1.35rem; }
+.clinic-date-header button:hover,
+.clinic-date-actions button:hover { background: var(--reception-hover, var(--soft)); }
+.clinic-date-header button:focus-visible,
+.clinic-date-actions button:focus-visible,
+.clinic-date-days button:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; }
+.clinic-date-header button:disabled,
+.clinic-date-actions button:disabled { opacity: .35; cursor: not-allowed; }
+
+.clinic-date-weekdays,
+.clinic-date-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: .2rem; }
+.clinic-date-weekdays { margin-bottom: .25rem; color: var(--reception-muted, var(--muted)); font-size: .66rem; font-weight: 800; text-align: center; }
+.clinic-date-days button,
+.clinic-date-spacer { aspect-ratio: 1; }
+.clinic-date-days button {
+    border: 0;
+    border-radius: .5rem;
+    background: transparent;
+    color: var(--reception-text, var(--ink));
+    font-size: .78rem;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+}
+.clinic-date-days button:hover:not(:disabled) { background: var(--reception-hover, var(--soft)); }
+.clinic-date-days button.is-today { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--red) 55%, transparent); }
+.clinic-date-days button.is-selected { background: var(--red); color: #fff; font-weight: 800; }
+.clinic-date-days button:disabled { color: var(--reception-muted, var(--muted)); opacity: .32; cursor: not-allowed; }
+.clinic-date-actions { display: flex; justify-content: space-between; gap: .5rem; margin-top: .6rem; padding-top: .55rem; border-top: 1px solid var(--reception-line, var(--line)); }
+.clinic-date-actions button { padding: .35rem .65rem; font-size: .72rem; font-weight: 700; }
+
+html[data-theme="dark"] .clinic-date-popover {
+    background: #281d22;
+    box-shadow: 0 1.1rem 3rem rgba(0, 0, 0, .48), 0 0 0 1px rgba(255, 255, 255, .06) inset;
+}
+
+@media (max-width: 520px) {
+    .clinic-date-popover.is-portal {
+        position: fixed;
+        z-index: 900;
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        width: min(19rem, calc(100vw - 1.5rem));
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clinic-date-trigger { transition: none; }
+}

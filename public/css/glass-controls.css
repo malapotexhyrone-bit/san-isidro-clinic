@@ -1,0 +1,71 @@
+:root { --clinic-glass-blur: 22px; --clinic-glass-tint: 0; --clinic-glass-progress: 55%; }
+.clinic-glass-controls { position: relative; flex: 0 0 auto; color: var(--reception-text, var(--login-text, #35141f)); }
+.clinic-glass-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--reception-line, var(--login-border, #eabaca)); border-radius: 12px; background: var(--reception-glass-soft, var(--login-glass, #fff0f5)); color: inherit; cursor: pointer; }
+.clinic-glass-toggle svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.clinic-glass-toggle:hover, .clinic-glass-toggle[aria-expanded="true"] { background: var(--reception-hover, var(--login-glass-strong, #fff5f8)); border-color: #ef668d; }
+.clinic-glass-toggle:focus-visible, .clinic-glass-footer button:focus-visible { outline: 3px solid #e94779; outline-offset: 3px; }
+.clinic-glass-settings { position: absolute; top: calc(100% + 12px); right: 0; z-index: 100; width: 280px; max-width: calc(100vw - 32px); padding: 18px; border: 1px solid var(--reception-line, var(--login-border, #eabaca)); border-radius: 20px; background: #fff0f5; color: inherit; box-shadow: 0 16px 48px rgba(54, 13, 30, .25); }
+.clinic-glass-settings[hidden] { display: none; }
+html[data-theme="dark"] .clinic-glass-settings { background: #2b1520; }
+.clinic-glass-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.clinic-glass-heading label { margin: 0; font-size: 14px; font-weight: 750; }
+.clinic-glass-heading output { color: #a1234f; font-size: 12px; font-weight: 700; white-space: nowrap; }
+html[data-theme="dark"] .clinic-glass-heading output { color: #ffb6d0; }
+.clinic-glass-settings p { margin: 8px 0 12px; font-size: 12px; line-height: 1.5; color: var(--reception-muted, var(--login-muted, #724858)); }
+/* The slider changes backdrop blur, never the foreground text or its padding. */
+.clinic-glass-controls input.clinic-glass-range { display: block; appearance: none; -webkit-appearance: none; width: 100%; height: 28px; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; cursor: pointer; }
+.clinic-glass-range::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: linear-gradient(to right, #e94779 0 var(--clinic-glass-progress), rgba(180, 108, 133, .3) var(--clinic-glass-progress) 100%); }
+.clinic-glass-range::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border: 3px solid #fff0f5; border-radius: 50%; background: #df376b; box-shadow: 0 2px 8px rgba(117, 24, 59, .3); }
+.clinic-glass-range::-moz-range-track { height: 6px; border-radius: 99px; background: rgba(180, 108, 133, .3); }
+.clinic-glass-range::-moz-range-progress { height: 6px; border-radius: 99px; background: #e94779; }
+.clinic-glass-range::-moz-range-thumb { width: 14px; height: 14px; border: 3px solid #fff0f5; border-radius: 50%; background: #df376b; }
+.clinic-glass-range:focus-visible { outline: 2px solid #e94779; outline-offset: 2px; border-radius: 6px; }
+.clinic-glass-scale, .clinic-glass-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--reception-muted, var(--login-muted, #724858)); font-size: 11px; }
+.clinic-glass-footer { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--reception-line, var(--login-border, #eabaca)); }
+.clinic-glass-footer button { border: 0; border-radius: 6px; padding: 5px 3px; background: transparent; color: inherit; font: inherit; font-weight: 700; cursor: pointer; }
+.clinic-glass-footer button:hover { color: #d43267; }
+.login-appearance-tools { position: fixed; top: 24px; right: 26px; z-index: 25; display: flex; align-items: center; gap: 10px; }
+.login-appearance-tools .theme-toggle { position: static; }
+.login-appearance-tools .clinic-glass-controls { position: static; }
+.login-appearance-tools .clinic-glass-toggle { width: 48px; height: 48px; border-radius: 50%; }
+@media (max-width: 520px) {
+    .login-appearance-tools { top: 17px; right: 17px; }
+    .login-appearance-tools .theme-toggle, .login-appearance-tools .clinic-glass-toggle { width: 44px; height: 44px; }
+}
+@media (max-width: 700px) {
+    .role-receptionist .clinic-glass-controls { position: static; }
+    .role-receptionist .clinic-glass-settings { left: 0; right: 0; width: auto; max-width: none; }
+}
+@media screen {
+    /* Release entrance-animation layers so nested panels can sample the page backdrop. */
+    .role-receptionist .sidebar, .role-receptionist .reception-topbar, .role-receptionist .content > * { animation-fill-mode: backwards; }
+    /* One browser setting covers every role's shared surfaces and the login page. */
+    .role-receptionist :is(.panel, .stat, .title-row, .profile-hero, .profile-card, .profile-save-bar, .confirm-dialog, .reception-welcome-card, .sidebar, .reception-topbar, .alert, .badge, .profile-role-badge, .profile-status-badge, .reception-sidebar-note),
+    .success-dialog,
+    body.login-page :is(.login-card, .login-brand-mark, .login-meta span, .theme-toggle),
+    .clinic-glass-toggle { backdrop-filter: blur(var(--clinic-glass-blur)) saturate(135%); -webkit-backdrop-filter: blur(var(--clinic-glass-blur)) saturate(135%); }
+    @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        html[data-theme="light"] {
+            --reception-glass: rgba(255, 249, 251, calc(.46 + var(--clinic-glass-tint)));
+            --reception-glass-strong: rgba(255, 249, 251, calc(.66 + var(--clinic-glass-tint)));
+            --reception-glass-soft: rgba(255, 255, 255, calc(.32 + var(--clinic-glass-tint)));
+            --reception-field: rgba(255, 255, 255, calc(.58 + var(--clinic-glass-tint)));
+            --login-glass: rgba(255, 255, 255, calc(.38 + var(--clinic-glass-tint)));
+            --login-glass-strong: rgba(255, 250, 252, calc(.64 + var(--clinic-glass-tint)));
+        }
+        html[data-theme="dark"] {
+            --reception-glass: rgba(31, 15, 24, calc(.48 + var(--clinic-glass-tint)));
+            --reception-glass-strong: rgba(31, 15, 24, calc(.70 + var(--clinic-glass-tint)));
+            --reception-glass-soft: rgba(255, 195, 214, max(.035, calc(.07 + var(--clinic-glass-tint))));
+            --reception-field: rgba(23, 10, 17, calc(.46 + var(--clinic-glass-tint)));
+            --login-glass: rgba(32, 16, 24, calc(.38 + var(--clinic-glass-tint)));
+            --login-glass-strong: rgba(38, 18, 27, calc(.64 + var(--clinic-glass-tint)));
+        }
+        .clinic-glass-settings { background: rgba(255, 240, 245, .98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        html[data-theme="dark"] .clinic-glass-settings { background: rgba(43, 21, 32, .98); }
+    }
+    @media (min-width: 1121px) {
+        html[data-sidebar="collapsed"] .role-receptionist .reception-sidebar-note { backdrop-filter: none; -webkit-backdrop-filter: none; }
+    }
+}
+@media print { .clinic-glass-controls, .login-appearance-tools { display: none !important; } }

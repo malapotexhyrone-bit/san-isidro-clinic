@@ -1,0 +1,479 @@
+/* Responsive application shell inspired by the reference workspace. */
+/* Keep the floating header's margin inside the page instead of shifting the body. */
+.role-receptionist .main { display: flow-root; }
+
+.role-receptionist .sidebar,
+.role-receptionist .main {
+    transition: width .24s ease, margin-left .24s ease, transform .24s ease;
+}
+
+.sidebar-collapse,
+.sidebar-mobile-open,
+.sidebar-mobile-close {
+    display: grid;
+    place-items: center;
+    color: var(--reception-text);
+    border: 1px solid var(--reception-line);
+    background: var(--reception-glass-strong);
+    cursor: pointer;
+}
+
+.sidebar-collapse svg,
+.sidebar-mobile-open svg,
+.sidebar-mobile-close svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sidebar-collapse:focus-visible,
+.sidebar-mobile-open:focus-visible,
+.sidebar-mobile-close:focus-visible {
+    outline: 3px solid rgba(229, 42, 86, .26);
+    outline-offset: 2px;
+}
+
+.sidebar-collapse {
+    position: absolute;
+    top: 35px;
+    right: -15px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: 0 7px 18px rgba(90, 24, 47, .14);
+    transition: color .2s ease, background .2s ease, transform .24s ease;
+}
+
+.sidebar-collapse:hover { background: var(--reception-hover); }
+
+.sidebar-mobile-open,
+.sidebar-mobile-close,
+.sidebar-backdrop { display: none; }
+
+.reception-header-start {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 12px;
+}
+
+.role-receptionist .reception-topbar {
+    top: 18px;
+    height: 64px;
+    margin: 18px 24px 0;
+    padding: 0 24px;
+    border: 1px solid var(--reception-line);
+    border-radius: 40px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .38),
+        0 12px 32px rgba(90, 24, 47, .16),
+        0 3px 8px rgba(90, 24, 47, .08);
+}
+
+@media (min-width: 901px) {
+    html[data-sidebar="expanded"] body.role-receptionist { --sidebar: 270px; }
+
+    html[data-sidebar="expanded"] .role-receptionist .sidebar {
+        padding: 24px 14px 18px;
+        overflow: hidden;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .reception-brand {
+        margin: 0 10px 18px;
+        font-size: 19px;
+        flex-shrink: 0;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .sidebar-collapse {
+        position: static;
+        display: flex;
+        width: 100%;
+        min-height: 44px;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        margin: 0 0 14px;
+        padding: 8px 12px;
+        color: var(--reception-muted);
+        border-color: transparent;
+        border-radius: 12px;
+        background: transparent;
+        box-shadow: none;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .sidebar-collapse:hover {
+        color: #d52350;
+        background: var(--reception-hover);
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .workspace { display: none; }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav {
+        min-height: 0;
+        flex: 1;
+        align-content: start;
+        gap: 4px;
+        padding: 5px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav a {
+        min-height: 52px;
+        gap: 12px;
+        padding: 5px;
+        color: var(--reception-muted);
+        border-color: transparent;
+        border-radius: 13px;
+        background: transparent;
+        box-shadow: none;
+        font-size: 13px;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav a:hover {
+        color: var(--reception-text);
+        border-color: transparent;
+        background: var(--reception-hover);
+        transform: none;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav a.active {
+        color: var(--reception-text);
+        border-color: var(--reception-line);
+        background: var(--reception-glass-soft);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .34);
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav-icon {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+        border: 1px solid var(--reception-line);
+        border-radius: 11px;
+        background: var(--reception-glass-soft);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28);
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .nav a.active .nav-icon {
+        color: #fff;
+        border-color: #dc2854;
+        background: linear-gradient(145deg, #f34e73, #c81743);
+        box-shadow: 0 7px 16px rgba(200, 23, 67, .20);
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .reception-sidebar-note {
+        margin-top: 16px;
+        flex-shrink: 0;
+    }
+
+    html[data-sidebar="expanded"] .role-receptionist .sidebar form,
+    html[data-sidebar="expanded"] .role-receptionist .sidebar-footer { flex-shrink: 0; }
+
+    html[data-sidebar="collapsed"] body.role-receptionist { --sidebar: 76px; }
+
+    html[data-sidebar="collapsed"] .role-receptionist .sidebar {
+        inset: 50% auto auto 18px;
+        width: 76px;
+        height: calc(100dvh - 32px);
+        max-height: calc(100dvh - 32px);
+        padding: 12px 8px;
+        overflow-x: visible;
+        overflow-y: auto;
+        border: 1px solid var(--reception-line);
+        border-radius: 40px;
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, .38),
+            0 12px 32px rgba(90, 24, 47, .18),
+            0 3px 8px rgba(90, 24, 47, .08);
+        animation: none;
+        transform: translateY(-50%);
+        scrollbar-width: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .sidebar::-webkit-scrollbar { display: none; }
+
+    html[data-sidebar="collapsed"] .role-receptionist .reception-brand {
+        display: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .reception-brand > span:last-child,
+    html[data-sidebar="collapsed"] .role-receptionist .sidebar-collapse-label,
+    html[data-sidebar="collapsed"] .role-receptionist .workspace,
+    html[data-sidebar="collapsed"] .role-receptionist .nav a > span:last-child,
+    html[data-sidebar="collapsed"] .role-receptionist .reception-sidebar-note > div,
+    html[data-sidebar="collapsed"] .role-receptionist .logout span,
+    html[data-sidebar="collapsed"] .role-receptionist .sidebar-footer {
+        display: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a,
+    html[data-sidebar="collapsed"] .role-receptionist .logout {
+        justify-content: center;
+        padding: 4px;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .sidebar-collapse {
+        position: static;
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        margin: 0 auto 8px;
+        border-color: transparent;
+        border-radius: 15px;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav {
+        gap: 2px;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a {
+        min-height: 48px;
+        margin: 2px 0;
+        color: var(--reception-muted);
+        border-color: transparent;
+        border-radius: 15px;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a:hover {
+        color: #ed315e;
+        background: rgba(237, 49, 94, .10);
+        transform: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a.active {
+        color: #ed315e;
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav-icon,
+    html[data-sidebar="collapsed"] .role-receptionist .nav a.active .nav-icon {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+        background: transparent;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .reception-sidebar-note {
+        position: relative;
+        justify-content: center;
+        width: 44px;
+        margin: 14px auto 0;
+        padding: 19px 8px 10px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .reception-sidebar-note::before {
+        position: absolute;
+        inset: 0 4px auto;
+        height: 1px;
+        background: var(--reception-line);
+        content: '';
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .logout {
+        width: 44px;
+        height: 44px;
+        margin: 0 auto;
+        border-color: transparent;
+        border-radius: 15px;
+        background: transparent;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .logout:hover {
+        background: rgba(237, 49, 94, .10);
+        transform: none;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a::after {
+        position: fixed;
+        left: 106px;
+        z-index: 80;
+        padding: 7px 10px;
+        color: #fff;
+        border-radius: 8px;
+        background: rgba(39, 17, 26, .94);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+        content: attr(data-label);
+        font-size: 11px;
+        font-weight: 750;
+        line-height: 1;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-5px);
+        transition: opacity .16s ease, transform .16s ease;
+        white-space: nowrap;
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .nav a:hover::after,
+    html[data-sidebar="collapsed"] .role-receptionist .nav a:focus-visible::after {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    html[data-sidebar="collapsed"] .role-receptionist .main {
+        margin-left: 112px;
+    }
+}
+
+@media (max-width: 900px) {
+    body.role-receptionist {
+        --sidebar: 0px;
+        overflow-x: hidden;
+    }
+
+    body.role-receptionist.mobile-nav-open { overflow: hidden; }
+
+    .role-receptionist .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: 72;
+        width: min(320px, 88vw);
+        height: 100dvh;
+        min-height: 100dvh;
+        padding: 24px 18px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transform: translateX(-105%);
+        animation: none;
+    }
+
+    .role-receptionist.mobile-nav-open .sidebar {
+        transform: translateX(0);
+        box-shadow: 18px 0 55px rgba(42, 13, 24, .28);
+    }
+
+    .role-receptionist .reception-brand {
+        max-width: calc(100% - 50px);
+        margin-bottom: 0;
+    }
+
+    .role-receptionist .workspace {
+        display: flex;
+        margin-top: 27px;
+    }
+
+    .role-receptionist .nav,
+    .role-admin .nav {
+        grid-template-columns: 1fr !important;
+    }
+
+    .role-receptionist .nav a {
+        justify-content: flex-start;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .role-receptionist .nav-icon { display: grid; }
+
+    .role-receptionist .reception-sidebar-note {
+        display: flex;
+        margin-top: auto;
+    }
+
+    .role-receptionist .sidebar form {
+        position: static;
+        inset: auto;
+    }
+
+    .role-receptionist .logout {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .role-receptionist .logout span,
+    .role-receptionist .sidebar-footer { display: block; }
+
+    .role-receptionist .main { margin-left: 0; }
+
+    .sidebar-collapse { display: none; }
+
+    .sidebar-mobile-open,
+    .sidebar-mobile-close { border-radius: 11px; }
+
+    .sidebar-mobile-open {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+        background: var(--reception-glass-soft);
+    }
+
+    .sidebar-mobile-open:hover,
+    .sidebar-mobile-close:hover { background: var(--reception-hover); }
+
+    .sidebar-mobile-close {
+        position: absolute;
+        top: 24px;
+        right: 18px;
+        z-index: 3;
+        display: grid;
+        width: 38px;
+        height: 38px;
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 71;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: rgba(34, 15, 23, .48);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        cursor: default;
+    }
+
+    .sidebar-backdrop[hidden] { display: none; }
+
+    .role-receptionist .reception-topbar {
+        top: 10px;
+        height: 60px;
+        margin: 10px 8px 0;
+        padding: 0 12px;
+        border-radius: 32px;
+    }
+}
+
+@media (max-width: 680px) {
+    .role-receptionist .sidebar { padding-top: 24px; }
+    .role-receptionist .reception-topbar { height: 60px; padding: 0 10px; }
+    .reception-header-start { gap: 9px; }
+}
+
+@media (max-width: 430px) {
+    .role-receptionist .nav a { font-size: 12px; }
+    .role-receptionist .logout span { display: inline; }
+}
+
+@media print {
+    .sidebar-collapse,
+    .sidebar-mobile-open,
+    .sidebar-mobile-close,
+    .sidebar-backdrop { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .role-receptionist .sidebar,
+    .role-receptionist .main,
+    .sidebar-collapse { transition: none; }
+}
